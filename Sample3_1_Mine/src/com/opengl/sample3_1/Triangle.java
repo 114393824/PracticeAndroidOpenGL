@@ -34,7 +34,7 @@ public class Triangle {
 		this.vCount = 3;
 		final float UNIT_SIZE = 0.2f;
 		float vertices[] = new float[] { -4 * UNIT_SIZE, 0, 0, 0,
-				-4 * UNIT_SIZE, 0, 0, 0, 4 * UNIT_SIZE };
+				-4 * UNIT_SIZE, 0, 4 * UNIT_SIZE, 0, 0 };
 
 		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
 		vbb.order(ByteOrder.nativeOrder());
@@ -42,7 +42,7 @@ public class Triangle {
 		this.mVertexBuffer.put(vertices);
 		this.mVertexBuffer.position(0);
 
-		float colors[] = new float[] { 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0 };
+		float colors[] = new float[] { 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0 };
 
 		ByteBuffer cbb = ByteBuffer.allocateDirect(colors.length * 4);
 		cbb.order(ByteOrder.nativeOrder());
@@ -70,7 +70,7 @@ public class Triangle {
 
 	public void drawSelf() {
 		GLES20.glUseProgram(this.mProgram);
-		Matrix.setRotateM(Triangle.mMMatrix, 0, 0, 0, 1, 0);
+		Matrix.setRotateM(Triangle.mMMatrix, 0, 0, 1, 0, 0);
 		Matrix.translateM(Triangle.mMMatrix, 0, 0, 0, 1);
 		Matrix.rotateM(Triangle.mMMatrix, 0, this.xAngle, 1, 0, 0);
 
